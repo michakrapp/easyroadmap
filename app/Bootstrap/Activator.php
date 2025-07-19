@@ -18,6 +18,7 @@ class Activator {
 		$activator->set_cron();
 		$activator->register_post_types();
 		$activator->register_taxonomies();
+		$activator->register_meta_fields();
 
 		// Set a flag that indicates the plugin has been activated
 		update_option( 'easyroadmap_activated', true );
@@ -33,5 +34,9 @@ class Activator {
 
 	public function register_taxonomies() {
 		$this->action( 'init', array( new Activator\Taxonomy(), 'register' ) );
+	}
+
+	public function register_meta_fields() {
+		$this->action( 'init', array( new Activator\Meta(), 'register' ) );
 	}
 }

@@ -19,6 +19,7 @@ class Init {
 		$this->action( 'admin_head', array( $this, 'modal' ) );
 		$this->action( 'wp_enqueue_scripts', array( $this, 'add_assets' ) );
 		$this->action( 'admin_enqueue_scripts', array( $this, 'add_assets' ) );
+
 		$this->filter( 'get_terms', array( $this, 'order_terms' ), 10, 4 );
 	}
 
@@ -34,6 +35,12 @@ class Init {
 		$this->enqueue_script(
 			'easyroadmap',
 			EASYROADMAP_ASSETS_URL . 'common/js/init.js'
+		);
+
+		$this->enqueue_script( 
+			'easyroadmap-block-variations',
+			EASYROADMAP_ASSETS_URL . 'common/js/block-variations.js',
+			array( 'wp-blocks' )
 		);
 
 		$this->enqueue_style(
